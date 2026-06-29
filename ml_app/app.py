@@ -84,8 +84,10 @@ st.markdown("""
 # ── Load model ────────────────────────────────────────────────
 @st.cache_resource
 def load_model():
-    model = joblib.load('lgbm_model.pkl')
-    feature_cols = joblib.load('feature_cols.pkl')
+    import os
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    model = joblib.load(os.path.join(base_dir, 'lgbm_model.pkl'))
+    feature_cols = joblib.load(os.path.join(base_dir, 'feature_cols.pkl'))
     return model, feature_cols
 
 try:
